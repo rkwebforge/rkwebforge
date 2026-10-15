@@ -57,19 +57,19 @@
 
   <rect x="474" y="58" width="482" height="388" rx="10" class="panel"/>
   <text x="492" y="84" class="label">SYSTEM.INFO</text>
-  <text x="938" y="84" class="label" text-anchor="end" opacity=".6">2026-10-15 12:59 UTC</text>
+  <text x="938" y="84" class="label" text-anchor="end" opacity=".6">2026-10-15 13:01 UTC</text>
   <line x1="474" y1="96" x2="956" y2="96" class="sep" stroke-dasharray="none"/>
-  <g class="row" style="animation-delay:0.40s"><text x="492" y="124.0" class="key">Subject</text><text x="662" y="124.0" class="val">Krishnaprasad R</text><line x1="492" y1="135.0" x2="938" y2="135.0" class="sep"/></g>
-<g class="row" style="animation-delay:0.58s"><text x="492" y="153.6" class="key">Handle</text><text x="662" y="153.6" class="val">@rkwebforge</text><line x1="492" y1="164.6" x2="938" y2="164.6" class="sep"/></g>
-<g class="row" style="animation-delay:0.76s"><text x="492" y="183.2" class="key">Role</text><text x="662" y="183.2" class="val">Full-Stack Developer</text><line x1="492" y1="194.2" x2="938" y2="194.2" class="sep"/></g>
-<g class="row" style="animation-delay:0.94s"><text x="492" y="212.8" class="key">Status</text><text x="662" y="212.8" class="val">Building | Learning | Shipping</text><line x1="492" y1="223.8" x2="938" y2="223.8" class="sep"/></g>
-<g class="row" style="animation-delay:1.12s"><text x="492" y="242.4" class="key">Languages</text><text x="662" y="242.4" class="val">Blade, JavaScript, Python</text><line x1="492" y1="253.4" x2="938" y2="253.4" class="sep"/></g>
-<g class="row" style="animation-delay:1.30s"><text x="492" y="272.0" class="key">Repositories</text><text x="662" y="272.0" class="val">4</text><line x1="492" y1="283.0" x2="938" y2="283.0" class="sep"/></g>
-<g class="row" style="animation-delay:1.48s"><text x="492" y="301.6" class="key">Contributions</text><text x="662" y="301.6" class="val">37</text><line x1="492" y1="312.6" x2="938" y2="312.6" class="sep"/></g>
-<g class="row" style="animation-delay:1.66s"><text x="492" y="331.2" class="key">Stars</text><text x="662" y="331.2" class="val">9</text><line x1="492" y1="342.2" x2="938" y2="342.2" class="sep"/></g>
-<g class="row" style="animation-delay:1.84s"><text x="492" y="360.8" class="key">Followers</text><text x="662" y="360.8" class="val">0</text><line x1="492" y1="371.8" x2="938" y2="371.8" class="sep"/></g>
-<g class="row" style="animation-delay:2.02s"><text x="492" y="390.4" class="key">Active Days</text><text x="662" y="390.4" class="val">9</text><line x1="492" y1="401.4" x2="938" y2="401.4" class="sep"/></g>
-<g class="row" style="animation-delay:2.20s"><text x="492" y="420.0" class="key">Contact</text><text x="662" y="420.0" class="val">github.com/rkwebforge</text><line x1="492" y1="431.0" x2="938" y2="431.0" class="sep"/></g>
+  <g class="row" style="animation-delay:0.40s"><text x="492" y="124.0" class="key">Subject</text><text x="627" y="124.0" class="val">Krishnaprasad R</text><line x1="492" y1="135.0" x2="938" y2="135.0" class="sep"/></g>
+<g class="row" style="animation-delay:0.58s"><text x="492" y="153.6" class="key">Handle</text><text x="627" y="153.6" class="val">@rkwebforge</text><line x1="492" y1="164.6" x2="938" y2="164.6" class="sep"/></g>
+<g class="row" style="animation-delay:0.76s"><text x="492" y="183.2" class="key">Role</text><text x="627" y="183.2" class="val">Full-Stack Developer</text><line x1="492" y1="194.2" x2="938" y2="194.2" class="sep"/></g>
+<g class="row" style="animation-delay:0.94s"><text x="492" y="212.8" class="key">Status</text><text x="627" y="212.8" class="val">Building | Learning | Shipping</text><line x1="492" y1="223.8" x2="938" y2="223.8" class="sep"/></g>
+<g class="row" style="animation-delay:1.12s"><text x="492" y="242.4" class="key">Stack</text><text x="627" y="242.4" class="val" textLength="311" lengthAdjust="spacingAndGlyphs">React, Next.js, Laravel, Tailwind CSS, TanStack</text><line x1="492" y1="253.4" x2="938" y2="253.4" class="sep"/></g>
+<g class="row" style="animation-delay:1.30s"><text x="492" y="272.0" class="key">Repositories</text><text x="627" y="272.0" class="val">4</text><line x1="492" y1="283.0" x2="938" y2="283.0" class="sep"/></g>
+<g class="row" style="animation-delay:1.48s"><text x="492" y="301.6" class="key">Contributions</text><text x="627" y="301.6" class="val">37</text><line x1="492" y1="312.6" x2="938" y2="312.6" class="sep"/></g>
+<g class="row" style="animation-delay:1.66s"><text x="492" y="331.2" class="key">Stars</text><text x="627" y="331.2" class="val">9</text><line x1="492" y1="342.2" x2="938" y2="342.2" class="sep"/></g>
+<g class="row" style="animation-delay:1.84s"><text x="492" y="360.8" class="key">Followers</text><text x="627" y="360.8" class="val">0</text><line x1="492" y1="371.8" x2="938" y2="371.8" class="sep"/></g>
+<g class="row" style="animation-delay:2.02s"><text x="492" y="390.4" class="key">Active Days</text><text x="627" y="390.4" class="val">9</text><line x1="492" y1="401.4" x2="938" y2="401.4" class="sep"/></g>
+<g class="row" style="animation-delay:2.20s"><text x="492" y="420.0" class="key">Contact</text><text x="627" y="420.0" class="val">github.com/rkwebforge</text><line x1="492" y1="431.0" x2="938" y2="431.0" class="sep"/></g>
 </g>
 <rect class="sweep" x="0" y="0" width="980" height="40" fill="#4dffa0" opacity=".04"/>
 <rect width="980" height="470" rx="18" fill="url(#scan)"/>
