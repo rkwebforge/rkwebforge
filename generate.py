@@ -17,7 +17,7 @@ FRONTEND = "React, Next.js, TanStack, Tailwind CSS"
 BACKEND = "Laravel, SQL, AWS & more"
 CONTACT = f"github.com/{USER}"
 
-W, H = 980, 470
+W = 980
 GREEN, DIM, BG = "#4dffa0", "#1f7a4d", "#03100a"
 TOKEN = os.environ.get("GITHUB_TOKEN")
 
@@ -58,8 +58,11 @@ def stats():
     return s
 
 
-def ascii_block(x, y, w, h):
-    lines = open(os.path.join(os.path.dirname(__file__), "ascii.txt")).read().splitlines()
+def load_art():
+    return open(os.path.join(os.path.dirname(__file__) or ".", "ascii.txt")).read().splitlines()
+
+
+def ascii_block(lines, x, y, w, h):
     cols = max(len(l) for l in lines)
     lh = h / len(lines)
     lines = [l.ljust(cols) for l in lines]
@@ -116,7 +119,14 @@ def info_rows(s, x, y, w, h):
 
 def render(s):
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    lx, ly, lw, lh = 24, 58, 430, 388  # left panel
+    art = load_art()
+    lx, ly, lw = 24, 58, 430  # left panel
+    art_w = lw - 28
+    # monospace cells are drawn 2x taller than wide, matching make_ascii.py, so the
+    # face keeps its proportions; the card height follows from that
+    art_h = round(art_w * len(art) / max(len(l) for l in art) * 2)
+    lh = art_h + 20
+    H = ly + lh + 24
     rx, ry, rw = lx + lw + 20, ly, W - (lx + lw + 20) - 24
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
 <defs>
@@ -158,7 +168,7 @@ def render(s):
   <text x="{W - 24}" y="34" class="label" text-anchor="end"><tspan class="blink">●</tspan> LIVE</text>
 
   <rect x="{lx}" y="{ly}" width="{lw}" height="{lh}" rx="10" class="panel"/>
-  {ascii_block(lx + 14, ly + 10, lw - 28, lh - 20)}
+  {ascii_block(art, lx + 14, ly + 10, art_w, art_h)}
 
   <rect x="{rx}" y="{ry}" width="{rw}" height="{lh}" rx="10" class="panel"/>
   <text x="{rx + 18}" y="{ry + 26}" class="label">SYSTEM.INFO</text>
