@@ -5,13 +5,13 @@ Standard library only. Set GITHUB_TOKEN to include contribution stats.
 import json
 import os
 import urllib.request
-from collections import Counter
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
 
 USER = "rkwebforge"
 ROLE = "Full-Stack Developer"
 STATUS = "Building | Learning | Shipping"
+STACK = "React, Next.js, Laravel, Tailwind CSS, TanStack"
 CONTACT = f"github.com/{USER}"
 
 W, H = 980, 470
@@ -35,13 +35,11 @@ def api(path, query=None):
 def stats():
     user = api(f"/users/{USER}")
     repos = [r for r in api(f"/users/{USER}/repos?per_page=100") if not r["fork"]]
-    langs = Counter(r["language"] for r in repos if r["language"])
     s = {
         "name": user.get("name") or USER,
         "repos": user["public_repos"],
         "followers": user["followers"],
         "stars": sum(r["stargazers_count"] for r in repos),
-        "languages": ", ".join(l for l, _ in langs.most_common(3)) or "-",
         "contributions": "-",
         "active_days": "-",
     }
@@ -87,7 +85,7 @@ def info_rows(s, x, y, w, h):
         ("Handle", f"@{USER}"),
         ("Role", ROLE),
         ("Status", STATUS),
-        ("Languages", s["languages"]),
+        ("Stack", STACK),
         ("Repositories", s["repos"]),
         ("Contributions", s["contributions"]),
         ("Stars", s["stars"]),
@@ -96,12 +94,16 @@ def info_rows(s, x, y, w, h):
         ("Contact", CONTACT),
     ]
     out, step = [], h / (len(rows) - 1)
+    vx = x + 135
     for i, (k, v) in enumerate(rows):
         ry = y + i * step
+        v = str(v)
+        # squeeze values wider than the panel (monospace glyph ~0.6em at 14px)
+        fit = f' textLength="{x + w - vx}" lengthAdjust="spacingAndGlyphs"' if len(v) * 8.4 > x + w - vx else ""
         out.append(
             f'<g class="row" style="animation-delay:{0.4 + i * 0.18:.2f}s">'
             f'<text x="{x}" y="{ry:.1f}" class="key">{escape(k)}</text>'
-            f'<text x="{x + 170}" y="{ry:.1f}" class="val">{escape(str(v))}</text>'
+            f'<text x="{vx}" y="{ry:.1f}" class="val"{fit}>{escape(v)}</text>'
             f'<line x1="{x}" y1="{ry + 11:.1f}" x2="{x + w}" y2="{ry + 11:.1f}" class="sep"/></g>'
         )
     return "\n".join(out)
