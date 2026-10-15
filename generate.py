@@ -11,7 +11,8 @@ from xml.sax.saxutils import escape
 USER = "rkwebforge"
 ROLE = "Full-Stack Developer"
 STATUS = "Building | Learning | Shipping"
-STACK = "React, Next.js, Laravel, Tailwind CSS, TanStack"
+FRONTEND = "React, Next.js, TanStack, Tailwind CSS"
+BACKEND = "Laravel, SQL, AWS & more"
 CONTACT = f"github.com/{USER}"
 
 W, H = 980, 470
@@ -37,7 +38,8 @@ def stats():
     repos = [r for r in api(f"/users/{USER}/repos?per_page=100") if not r["fork"]]
     s = {
         "name": user.get("name") or USER,
-        "repos": user["public_repos"],
+        # the USER/USER profile repo is just this card, so leave it out
+        "repos": sum(1 for r in repos if r["name"].lower() != USER.lower()),
         "followers": user["followers"],
         "stars": sum(r["stargazers_count"] for r in repos),
         "contributions": "-",
@@ -85,8 +87,9 @@ def info_rows(s, x, y, w, h):
         ("Handle", f"@{USER}"),
         ("Role", ROLE),
         ("Status", STATUS),
-        ("Stack", STACK),
-        ("Repositories", s["repos"]),
+        ("Frontend", FRONTEND),
+        ("Backend", BACKEND),
+        ("Public Repos", s["repos"]),
         ("Contributions", s["contributions"]),
         ("Stars", s["stars"]),
         ("Followers", s["followers"]),
