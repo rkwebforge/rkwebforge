@@ -15,6 +15,7 @@ ROLE = "Full-Stack Developer"
 STATUS = "Building | Learning | Shipping"
 FRONTEND = "React, Next.js, TanStack, Tailwind CSS"
 BACKEND = "Laravel, SQL, AWS & more"
+PROJECT = "Creator & Maintainer of Bladewellui.com"
 CONTACT = f"github.com/{USER}"
 
 W = 980
@@ -45,16 +46,12 @@ def stats():
         "followers": user["followers"],
         "stars": sum(r["stargazers_count"] for r in repos),
         "contributions": "-",
-        "active_days": "-",
     }
     if TOKEN:
         q = """{ user(login: "%s") { contributionsCollection { contributionCalendar {
-                totalContributions weeks { contributionDays { contributionCount } } } } } }""" % USER
+                totalContributions } } } }""" % USER
         cal = api("/graphql", q)["data"]["user"]["contributionsCollection"]["contributionCalendar"]
         s["contributions"] = f"{cal['totalContributions']:,}"
-        s["active_days"] = sum(
-            1 for w in cal["weeks"] for d in w["contributionDays"] if d["contributionCount"]
-        )
     return s
 
 
@@ -98,7 +95,7 @@ def info_rows(s, x, y, w, h):
         ("Contributions", s["contributions"]),
         ("Stars", s["stars"]),
         ("Followers", s["followers"]),
-        ("Active Days", s["active_days"]),
+        ("Project", PROJECT),
         ("Contact", CONTACT),
     ]
     out, step = [], h / (len(rows) - 1)
