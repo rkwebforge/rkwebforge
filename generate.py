@@ -4,6 +4,8 @@ Standard library only. Set GITHUB_TOKEN to include contribution stats.
 """
 import json
 import os
+import re
+import time
 import urllib.request
 from datetime import datetime, timezone
 from xml.sax.saxutils import escape
@@ -175,4 +177,9 @@ if __name__ == "__main__":
     svg = render(stats())
     with open(os.path.join(os.path.dirname(__file__) or ".", "profile.svg"), "w") as f:
         f.write(svg)
+    # bump ?v= so GitHub's image cache fetches the new card instead of a stale one
+    readme = os.path.join(os.path.dirname(__file__) or ".", "README.md")
+    text = open(readme).read()
+    with open(readme, "w") as f:
+        f.write(re.sub(r"profile\.svg(\?v=\d+)?", f"profile.svg?v={int(time.time())}", text))
     print("wrote profile.svg")
