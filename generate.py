@@ -16,6 +16,13 @@ STATUS = "Building | Learning | Shipping"
 FRONTEND = "React, Next.js, TanStack, Tailwind CSS"
 BACKEND = "Laravel, SQL, AWS & more"
 PROJECT = "Creator & Maintainer of Bladewellui.com"
+FLAGSHIP = "bladewell"  # repo whose stars get their own row
+
+# link buttons shown under the card: (file name, terminal-style label)
+BUTTONS = [
+    ("bladewell", "$ open bladewellui.com"),
+    ("email", "$ mail webforge.rk@gmail.com"),
+]
 CONTACT = f"github.com/{USER}"
 
 W = 980
@@ -44,6 +51,7 @@ def stats():
         # the USER/USER profile repo is just this card, so leave it out
         "repos": sum(1 for r in repos if r["name"].lower() != USER.lower()),
         "followers": user["followers"],
+        "flagship_stars": next((r["stargazers_count"] for r in repos if r["name"] == FLAGSHIP), 0),
         "stars": sum(r["stargazers_count"] for r in repos),
         "contributions": "-",
     }
@@ -94,7 +102,7 @@ def info_rows(s, x, y, w, h):
         ("Public Repos", s["repos"]),
         ("Contributions", s["contributions"]),
         ("Stars", s["stars"]),
-        ("Followers", s["followers"]),
+        ("Bladewell", f"★ {s['flagship_stars']} stars"),
         ("Project", PROJECT),
         ("Contact", CONTACT),
     ]
@@ -180,10 +188,30 @@ def render(s):
 """
 
 
+def render_button(label):
+    w, h = round(len(label) * 8.4 + 44), 40
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
+<defs><filter id="g" x="-10%" y="-30%" width="120%" height="160%">
+  <feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter></defs>
+<rect width="{w}" height="{h}" rx="8" fill="{BG}"/>
+<g filter="url(#g)">
+  <rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="7" fill="none" stroke="{GREEN}" stroke-width="1.5"/>
+  <text x="{w / 2}" y="{h / 2 + 5}" text-anchor="middle" font-size="14"
+    font-family="'JetBrains Mono','Fira Code',Menlo,Consolas,'Courier New',monospace" fill="{GREEN}">{escape(label)}</text>
+</g>
+</svg>
+"""
+
+
 if __name__ == "__main__":
     svg = render(stats())
     with open(os.path.join(os.path.dirname(__file__) or ".", "profile.svg"), "w") as f:
         f.write(svg)
+    os.makedirs(os.path.join(os.path.dirname(__file__) or ".", "buttons"), exist_ok=True)
+    for name, label in BUTTONS:
+        with open(os.path.join(os.path.dirname(__file__) or ".", "buttons", f"{name}.svg"), "w") as f:
+            f.write(render_button(label))
     # bump ?v= so GitHub's image cache fetches the new card instead of a stale one
     readme = os.path.join(os.path.dirname(__file__) or ".", "README.md")
     text = open(readme).read()

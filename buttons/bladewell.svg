@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="229" height="40" viewBox="0 0 229 40">
+<defs><filter id="g" x="-10%" y="-30%" width="120%" height="160%">
+  <feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter></defs>
+<rect width="229" height="40" rx="8" fill="#03100a"/>
+<g filter="url(#g)">
+  <rect x="1.5" y="1.5" width="226" height="37" rx="7" fill="none" stroke="#4dffa0" stroke-width="1.5"/>
+  <text x="114.5" y="25.0" text-anchor="middle" font-size="14"
+    font-family="'JetBrains Mono','Fira Code',Menlo,Consolas,'Courier New',monospace" fill="#4dffa0">$ open bladewellui.com</text>
+</g>
+</svg>
